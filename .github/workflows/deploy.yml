@@ -37,6 +37,6 @@ jobs:
             open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_SERVER }}
             pwd
             ls -la
-            mirror -R -v --delete --parallel=3 --exclude-glob .git* --exclude-glob .htaccess ./out/ ./
+            mirror -R -v --delete --parallel=3 --exclude-glob .git* --exclude-glob .htaccess ./out/ ./public_html/
             quit
           "
