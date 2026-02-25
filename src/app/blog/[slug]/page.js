@@ -94,7 +94,7 @@ export default async function BlogPostPage({ params }) {
                 </div>
             )}
 
-            <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-primary hover:prose-a:text-primary/80">
+            <div className="prose prose-lg dark:prose-invert prose-slate prose-p:text-slate-300 prose-headings:text-white prose-strong:text-white prose-strong:font-extrabold max-w-none prose-a:text-cyan-400 hover:prose-a:text-cyan-300">
                 {post.body ? (
                     <PortableText value={post.body} components={portableTextComponents} />
                 ) : (
