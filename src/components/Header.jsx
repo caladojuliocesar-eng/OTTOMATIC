@@ -19,6 +19,9 @@ const Header = () => {
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/5511999731501?text=Falei%20com%20o%20Otto,%20quero%20meu%20funcionário%20digital.', '_blank');
   };
+
+  if (pathname?.startsWith('/ferramentas/post-generator')) return null;
+
   return <motion.header initial={{
     y: -100
   }} animate={{
@@ -46,6 +49,9 @@ const Header = () => {
         <div className="hidden md:flex items-center gap-8">
           <Link href="/blog" className={`text-sm font-medium transition-colors hover:text-cyan-400 ${pathname === '/blog' ? 'text-cyan-400' : 'text-slate-300'}`}>
             Blog
+          </Link>
+          <Link href="/ferramentas" className={`text-sm font-medium transition-colors hover:text-cyan-400 ${pathname.startsWith('/ferramentas') ? 'text-cyan-400' : 'text-slate-300'}`}>
+            Ferramentas
           </Link>
           <Link href="/solutions" className={`text-sm font-medium transition-colors hover:text-cyan-400 ${pathname === '/solutions' ? 'text-cyan-400' : 'text-slate-300'}`}>
             Soluções
@@ -77,6 +83,9 @@ const Header = () => {
       }} className="md:hidden mt-4 pb-4 space-y-4">
         <Link href="/blog" className="block w-full text-center py-2 text-slate-300 hover:text-cyan-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
           Blog
+        </Link>
+        <Link href="/ferramentas" className="block w-full text-center py-2 text-slate-300 hover:text-cyan-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+          Ferramentas
         </Link>
         <Link href="/solutions" className="block w-full text-center py-2 text-slate-300 hover:text-cyan-400 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
           Soluções

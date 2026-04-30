@@ -1,0 +1,34 @@
+📘 MANUAL DE OPERAÇÃO: SITE E BLOG OTTOMATIC
+Este documento contém as instruções rápidas sobre como o site e o blog funcionam e os passos para atualizá-los.
+
+1. ENTENDENDO NOSSA ESTRUTURA
+Temos o site dividido mentalmente em duas partes:
+
+O Código (A "Planta da Casa"): Fica armazenado e controlado no GitHub. É onde alteramos cores, layouts e criamos novas páginas (como a do relatório não listado).
+O Conteúdo do Blog (Os "Móveis"): Fica armazenado e controlado na plataforma Sanity (o nosso "estúdio"). É lá onde você escreve, edita e apaga artigos sem precisar tocar em uma linha de código.
+O Servidor Oficial (O "Terreno"): A hospedagem é a Hostinger. É lá onde o site fica no ar para o mundo. O site gerado é "estático", super rápido e seguro.
+Você nunca edita publicações no código, nem altera as cores pelo Sanity. Cada um tem seu papel. E todos eles se unem na hora em que damos um comando no seu computador chamado "Build" (Construir/Gerar o site).
+
+2. COMO PUBLICAR UM NOVO POST NO BLOG
+Sem programar nada, faça apenas isso:
+
+Acesse o estúdio do Sanity pelo seu navegador, vá em "Posts" e crie seu novo artigo.
+Adicione os textos, a foto de capa e clique em Publish (Publicar).
+Atenção: Só publicar no Sanity NÃO atualiza o site na Hostinger. O site precisa ser "reconstruído" com o novo texto misturado no layout. Vá para o passo 3!
+3. COMO ATUALIZAR O SITE NA INTERNET (O "BUILD")
+Sempre que fizer uma mudança grande de código ou publicar um novo post no Sanity, você precisa seguir esses passos para jogar a novidade no ar:
+
+Vá na pasta do seu projeto (C:\Users\Julio Calado\Desktop\OTTOMATIC ANTIGRAVITY).
+Dê um duplo clique no arquivo Gerar-Site-Atualizado.bat
+O terminal preto vai abrir, limpar o lixo velho, baixar os textos mais novos do Sanity (os que você acabou de criar) e construir o site final limpinho em HTML. Ele fecha ou pausa sozinho quando termina.
+Quando ele acabar as letrinhas, ele vai ter criado/atualizado a pasta chamada out dentro do seu projeto.
+Abra sua hospedagem final (Hostinger).
+Vá na pasta public_html do seu servidor web. Selecione tudo e Delete.
+Pegue TODOS os arquivos e pastas que estão dentro da sua pasta out do computador e arraste/faça upload para a public_html da Hostinger.
+Pronto, atualização no ar!
+
+4. LINKS E CAMINHOS IMPORTANTES
+Nosso site no seu PC: Ao rodar npm run dev, ele roda em http://localhost:3000
+Criamos Páginas Novas no GitHub? Sempre rode novamente o .bat (Gerar Site) para elas existirem na pasta out e entrarem no ar.
+Onde gerenciar as Postagens? No painel do Sanity.
+Onde Ficam Nossas Páginas Criadas Manualmente? Na pasta src/app/ (Exemplo: seu HTML exclusivo está em src/app/estudo-nhjb/page.js).
