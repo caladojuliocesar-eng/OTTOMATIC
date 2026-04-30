@@ -35,31 +35,14 @@ REGRAS GLOBAIS DE QUALIDADE — COPY ENXUTO E LETAL:
     Layouts disponíveis: capa / texto_imagem / so_texto / impacto / foto_full / microblog_capa / microblog_texto / microblog_lista / microblog_cta.
     Formato: [{ "slide": 1, "layout": "capa", "titulo": "...", "texto_apoio": "...", "sugestao_visual": "..." }]`;
 
-    let searchContext = "";
-    if (useWebSearch) {
-      try {
-        // Use gemini-1.5-flash which is robust
-        const searchModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        const searchRes = await searchModel.generateContent({
-          contents: [{ role: "user", parts: [{ text: `Pesquise dados e estatísticas atuais sobre o tema: "${theme}". Nicho: ${brandCategory}. Retorne um resumo objetivo.` }] }],
-          tools: [{ googleSearchRetrieval: {} }]
-        });
-        const searchText = searchRes.response.text();
-        if (searchText) {
-          searchContext = `\n\nDADOS REAIS ENCONTRADOS NA WEB:\n${searchText.slice(0, 2000)}`;
-        }
-      } catch (e) {
-        console.error("Search grounding failed, continuing without it:", e);
-      }
-    }
-
-    // Try using gemini-1.5-flash-latest or gemini-1.5-flash
+    // Initialize model with a very stable name
     const model = genAI.getGenerativeModel({ 
       model: "gemini-1.5-flash",
       systemInstruction: systemInstruction,
     });
 
-    const finalPrompt = `Tema/Texto Base: ${theme}${searchContext}`;
+    // For now, we simplify the prompt and avoid the search tool to debug the 404
+    const finalPrompt = `Tema/Texto Base: ${theme}`;
 
     const result = await model.generateContent({
       contents: [{ role: "user", parts: [{ text: finalPrompt }] }],
