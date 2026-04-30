@@ -30,9 +30,9 @@ REGRAS:
 
     const systemInstruction = mode.prompt + contextBlock + `\n\nResponda em JSON: [{ "slide": 1, "layout": "capa", "titulo": "...", "texto_apoio": "...", "sugestao_visual": "..." }]`;
 
-    // We use gemini-1.5-flash-latest on v1 stable API
+    // Using the most universal model name possible to troubleshoot 404
     const model = genAI.getGenerativeModel(
-      { model: "gemini-1.5-flash" },
+      { model: "gemini-pro" },
       { apiVersion: 'v1' }
     );
 
@@ -49,6 +49,6 @@ REGRAS:
 
   } catch (error) {
     console.error("Error generating carousel:", error);
-    return Response.json({ error: `[API v2.2] ${error.message || "Failed to generate carousel"}` }, { status: 500 });
+    return Response.json({ error: `[API v2.3] ${error.message || "Failed to generate carousel"}` }, { status: 500 });
   }
 }
