@@ -38,9 +38,10 @@ REGRAS GLOBAIS DE QUALIDADE — COPY ENXUTO E LETAL:
     let searchContext = "";
     if (useWebSearch) {
       try {
+        // Use gemini-1.5-flash which is robust
         const searchModel = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         const searchRes = await searchModel.generateContent({
-          contents: [{ role: "user", parts: [{ text: `Pesquise dados, estatísticas e informações atuais sobre o tema: "${theme}". Nicho: ${brandCategory}. Retorne um resumo objetivo.` }] }],
+          contents: [{ role: "user", parts: [{ text: `Pesquise dados e estatísticas atuais sobre o tema: "${theme}". Nicho: ${brandCategory}. Retorne um resumo objetivo.` }] }],
           tools: [{ googleSearchRetrieval: {} }]
         });
         const searchText = searchRes.response.text();
@@ -52,6 +53,7 @@ REGRAS GLOBAIS DE QUALIDADE — COPY ENXUTO E LETAL:
       }
     }
 
+    // Try using gemini-1.5-flash-latest or gemini-1.5-flash
     const model = genAI.getGenerativeModel({ 
       model: "gemini-1.5-flash",
       systemInstruction: systemInstruction,
