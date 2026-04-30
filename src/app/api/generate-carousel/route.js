@@ -14,6 +14,7 @@ export async function POST(req) {
       return Response.json({ error: "GEMINI_API_KEY not found in environment variables." }, { status: 500 });
     }
 
+    // Force stable v1 version
     const genAI = new GoogleGenerativeAI(apiKey);
     
     const contextBlock = `
@@ -35,13 +36,12 @@ REGRAS GLOBAIS DE QUALIDADE — COPY ENXUTO E LETAL:
     Layouts disponíveis: capa / texto_imagem / so_texto / impacto / foto_full / microblog_capa / microblog_texto / microblog_lista / microblog_cta.
     Formato: [{ "slide": 1, "layout": "capa", "titulo": "...", "texto_apoio": "...", "sugestao_visual": "..." }]`;
 
-    // Initialize model with a very stable name
+    // Using gemini-1.5-pro for maximum compatibility and intelligence
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash",
+      model: "gemini-1.5-pro",
       systemInstruction: systemInstruction,
     });
 
-    // For now, we simplify the prompt and avoid the search tool to debug the 404
     const finalPrompt = `Tema/Texto Base: ${theme}`;
 
     const result = await model.generateContent({
