@@ -58,6 +58,6 @@ REGRAS GLOBAIS DE QUALIDADE — COPY ENXUTO E LETAL:
 
   } catch (error) {
     console.error("Error generating carousel:", error);
-    return Response.json({ error: error.message || "Failed to generate carousel" }, { status: 500 });
+    return Response.json({ error: `[API v2.1] ${error.message || "Failed to generate carousel"}` }, { status: 500 });
   }
 }
